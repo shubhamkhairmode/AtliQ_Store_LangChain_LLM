@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtliQ Brand Store: Database Q&A 👕</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <style>
+        /* Center the content and adjust font size */
+        body {
+            background-image: url("/static/data/home.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        /* Style the input box */
+        input[type="text"] {
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 70%;
+            margin: 20px 0;
+        }
+
+        /* Style the button */
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Style the answer display */
+        #answer {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add your image here -->
+    
+
+    <!-- Your existing HTML content -->
+    <h1>AtliQ Brand Store: Database Q&A 👕</h1>
+    <p>Welcome to the AtliQ Clothing Database Q&A tool.</p>
+    <p>Developed by Shubham Khairmode</p>
+    <p>Contact: shubhambkhairmode@gmail.com</p>
+
+    <!-- Input box for the question -->
+    <input type="text" id="question" placeholder="Ask a Question">
+
+    <!-- Button to get the answer -->
+    <button onclick="getAnswer()">Get Answer</button>
+
+    <!-- Display the answer here -->
+    <div id="answer"></div>
+
+    <p>Thank you for using the AtliQ Brand Store Clothing Database Q&A tool.</p>
+
+    <!-- JavaScript code to get and display the answer -->
+    <script>
+        function getAnswer() {
+            var question = document.getElementById("question").value;
+    
+            // Make an API call to your Flask backend to fetch the answer
+            fetch('/ask', {
+                method: 'POST',
+                body: JSON.stringify({ question: question }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.text())
+            .then(answer => {
+                // Display the answer in the large font size on the page
+                document.getElementById("answer").innerHTML = answer;
+            });
+        }
+    </script>
+    
+</body>
+</html>
